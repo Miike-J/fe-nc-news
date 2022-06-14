@@ -2,6 +2,7 @@ const axios = require('axios')
 
 
 exports.getArticles = (topicSelect) => {
+    //change url for .get if a topic is selected
     let url = 'https://nc-news-project-app.herokuapp.com/api/articles'
     if(topicSelect) {
         url += `?topic=${topicSelect}`
