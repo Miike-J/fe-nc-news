@@ -75,7 +75,7 @@ h1 {
   text-align: end;
 }
 .single-article > #article-title {
-  grid-template-areas: title;
+  grid-area: title;
   grid-column-start: 1;
   grid-column-end: 3;
   padding: 1rem;
@@ -83,19 +83,19 @@ h1 {
   border-left: solid 2px #ff8e00;
 }
 .single-article > #article-author {
-  grid-template-areas: author;
+  grid-area: author;
   padding: 1rem;
   grid-column-start: 1;
   grid-column-end: 3;
   font-size: small;
 }
 .single-article > #article-votes {
-  grid-template-areas: votes;
+  grid-area: votes;
   padding: 1rem;
   font-size: small;
 }
 .single-article > #article-comments {
-  grid-template-areas: comments;
+  grid-area: comments;
   padding: 1rem;
   font-size: small;
 }
@@ -106,3 +106,73 @@ h1 {
   width: 200px;
 }
 
+
+/*---Single article page---*/
+.article-list {
+  display: grid;
+  background-color: #eeeeee;
+  border-radius: 25px;
+  padding: 0.5rem;
+}
+
+.article-item {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-areas: 'topic date'
+  'title title'
+  'author author'
+  'body body'
+  'votes comments';
+  background-color: #ffffff;
+  border: solid 2px #ffffff;
+  list-style: none;
+  border-radius: 5px;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
+}
+.article-item > #article-topic {
+  grid-area: topic;
+  padding: 1rem;
+  text-transform: capitalize;
+  font-size: small;
+}
+.article-item > #article-date {
+  grid-area: date;
+  padding: 1rem;
+  font-size: small;
+  text-align: end;
+}
+.article-item > #article-title {
+  grid-area: title;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding: 1rem;
+  margin-left: 2%;
+  border-left: solid 2px #ff8e00;
+}
+.article-item > #article-author {
+  grid-area: author;
+  padding: 1rem;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-size: small;
+}
+.article-item > #article-body {
+  grid-area: body;
+  padding: 1rem;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-top: solid 1px black;
+}
+.article-item > #article-votes {
+  grid-area: votes;
+  padding: 1rem;
+  font-size: small;
+}
+.article-item > #article-comments {
+  grid-area: comments;
+  padding: 1rem;
+  font-size: small;
+}
