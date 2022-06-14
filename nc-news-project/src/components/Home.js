@@ -25,6 +25,7 @@ const Home = () => {
     })
    }, [articleList])
 
+   //Get topic list 
    useEffect(() => {
     getTopics().then(data => {
         setTopicList(data.topics.map(topic => {
@@ -37,6 +38,7 @@ const Home = () => {
     })
    }, [])
 
+   //handle which topic has been selected 
    const handleSelectChange = (selectedOption) => {
     setTopicSelect((currTopic) => {
         if(!selectedOption){
@@ -53,6 +55,7 @@ const Home = () => {
     return (
         <>
         <ul className="article-list">
+            {/*drop down to select which topic to sort for*/}
             <Select 
             className="topic-select"
             isClearable={true}
@@ -65,10 +68,10 @@ const Home = () => {
             {articleList.map(article => {
                 return (
                     <li className="single-article" key={article.article_id}>
-                    <p id="article-topic">Topic: {article.topic}</p>
+                    <p id="article-topic">Topic: <span>{article.topic}</span></p>
                     <p id="article-date">{article.created_at}</p>
                     <p id="article-title"><Link to='/'>{article.title}</Link></p>
-                    <p id="article-author">By: {article.author}</p>
+                    <p id="article-author">By: <span>{article.author}</span></p>
                     <p id="article-votes">Votes: {article.votes}</p>
                     <p id="article-comments">Comments: {article.comment_count}</p>
                     </li>    
