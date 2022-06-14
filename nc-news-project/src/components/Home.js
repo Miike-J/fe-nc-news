@@ -24,17 +24,17 @@ const Home = () => {
 
    if(isLoading) return <div style={style}><PropgateLoader /></div>
     return (
-        <ul className="article-list" key='article-list'>
+        <ul className="article-list">
             {articleList.map(article => {
                 return (
-                    <div className="single-article" >
-                    <li id="article-topic">Topic: {article.topic}</li>
-                    <li id="article-date">{article.created_at}</li>
-                    <li id="article-title"><Link to='/'>{article.title}</Link></li>
-                    <li id="article-author">By: {article.author}</li>
-                    <li id="article-votes">Votes: {article.votes}</li>
-                    <li id="article-comments">Comments: {article.comment_count}</li>
-                    </div>    
+                    <li className="single-article" key={article.article_id}>
+                    <p id="article-topic">Topic: {article.topic}</p>
+                    <p id="article-date">{article.created_at}</p>
+                    <p id="article-title"><Link to='/'>{article.title}</Link></p>
+                    <p id="article-author">By: {article.author}</p>
+                    <p id="article-votes">Votes: {article.votes}</p>
+                    <p id="article-comments">Comments: {article.comment_count}</p>
+                    </li>    
                 )
             })}
         </ul>
