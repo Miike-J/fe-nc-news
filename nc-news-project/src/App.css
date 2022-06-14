@@ -35,6 +35,9 @@ h1 {
 /*---HOME PAGE---*/
 .article-list {
   display: grid;
+  background-color: #eeeeee;
+  border-radius: 25px;
+  padding: 0.5rem;
 }
 
 .single-article {
@@ -45,15 +48,16 @@ h1 {
   'author author'
   'votes comments';
   background-color: #ffffff;
-  border: solid 2px #ff8e00;
+  border: solid 2px #ffffff;
   list-style: none;
   border-radius: 5px;
   margin-left: 2%;
   margin-right: 2%;
+  box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
 }
-.single-article:hover {
-  border: solid 2px #000000;
-}
+/* .single-article:hover {
+  border: solid 2px #ff8e00;
+} */
 .single-article > #article-topic {
   grid-area: topic;
   padding: 1rem;
@@ -90,5 +94,11 @@ h1 {
   grid-template-areas: comments;
   padding: 1rem;
   font-size: small;
+}
+
+.topic-select {
+  margin-top: 2%;
+  margin-left: 2%;
+  width: 200px;
 }
 
