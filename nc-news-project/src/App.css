@@ -7,6 +7,10 @@
   /* background-image: url(); */
 }
 
+span {
+  color: #ff8e00;
+}
+
 .App {
   display: grid;
   grid-template-rows: 
@@ -55,9 +59,9 @@ h1 {
   margin-right: 2%;
   box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
 }
-/* .single-article:hover {
-  border: solid 2px #ff8e00;
-} */
+.single-article:hover {
+  box-shadow: 10px 5px 5px rgba(49, 49, 49, 0.585);
+}
 .single-article > #article-topic {
   grid-area: topic;
   padding: 1rem;
