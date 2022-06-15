@@ -189,3 +189,55 @@ h1 {
   padding: 1rem;
   font-size: small;
 }
+
+/*---Comment List---*/
+#comment-title {
+  padding: 1rem;
+}
+.comment-list {
+  display: grid;
+  background-color: #eeeeee;
+  border-radius: 25px;
+  padding: 0.5rem;
+}
+
+.comment-item {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-areas: 'author date'
+  'body body'
+  'votes votes';
+  background-color: #ffffff;
+  border: solid 2px #ffffff;
+  list-style: none;
+  border-radius: 5px;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
+}
+.comment-item > #comment-author {
+  grid-area: author;
+  padding: 1rem;
+  text-transform: capitalize;
+  font-size: small;
+}
+.comment-item > #comment-date {
+  grid-area: date;
+  padding: 1rem;
+  font-size: small;
+  text-align: end;
+}
+.comment-item > #comment-body {
+  grid-area: body;
+  padding: 1rem;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-top: solid 1px black;
+}
+.comment-item > #comment-votes {
+  grid-area: votes;
+  padding: 1rem;
+  font-size: small;
+  text-align: end;
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { getSingleArticle, updateVotes } from "../api"
+import { getSingleArticle, updateVotes, getArticleComments } from "../api"
 import moment from "moment"
 import PropgateLoader from 'react-spinners/PropagateLoader'
 
@@ -10,16 +10,23 @@ const SingleArticle = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [voteChange, setVoteChange] = useState(0)
     const [votes, setVotes] = useState(0)
+    const [commentList, setCommentList] = useState(({}))
 
     useEffect(() => {
         getSingleArticle(article_id).then(article => {
             
-                let str = article.created_at
-                article.date = moment(str).format("l")
-                
-            
+            let artDate = article.created_at
+            article.date = moment(artDate).format("l")
             setArticle(article)
             setVotes(article.votes)
+        })
+        getArticleComments(article_id).then(comments => {
+            comments.map(article => {
+                let str = article.created_at
+                let date = moment(str).format("l")
+                return article.created_at = date
+            })
+            setCommentList(comments)
             setIsLoading(false)
         })
     }, [])
@@ -54,6 +61,19 @@ const SingleArticle = () => {
 
                     <p id="article-comments">Comments: {article.comment_count}</p>
                 </li>
+        </ul>
+        <h3 id="comment-title">Comments</h3>
+        <ul className="comment-list">
+            {commentList.map(comment => {
+                return (
+                    <li className="comment-item" key={comment.comment_id}>
+                        <p id='comment-author'>By: <span>{comment.author}</span></p>
+                        <p id='comment-date'>{comment.created_at}</p>
+                        <p id='comment-body'>{comment.body}</p>
+                        <p id='comment-votes'>Votes: {comment.votes}</p>
+                    </li>
+                )
+            })}
         </ul>
         </>
     )
