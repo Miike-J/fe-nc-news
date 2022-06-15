@@ -171,8 +171,21 @@ h1 {
   padding: 1rem;
   font-size: small;
 }
+.article-item > #article-votes > #vote-button {
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 0.2rem;
+  min-width: 20px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.article-item > #article-votes > #vote-button:hover {
+  background-color: rgba(255, 142, 0, 0.8);
+  color: #eeeeee;
+}
 .article-item > #article-comments {
   grid-area: comments;
+  margin-top: 3%;
   padding: 1rem;
   font-size: small;
 }
