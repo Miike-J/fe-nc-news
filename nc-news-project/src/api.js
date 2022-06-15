@@ -28,4 +28,9 @@ exports.updateVotes = (article_id, num) => {
     return axios.patch(`https://nc-news-project-app.herokuapp.com/api/articles/${article_id}`, {inc_votes: num})
 }
 
+exports.getArticleComments = (article_id) => {
+    return axios.get(`https://nc-news-project-app.herokuapp.com/api/articles/${article_id}/comments`).then(data => {
+        return data.data.comments
+    })
+}
 
