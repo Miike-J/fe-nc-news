@@ -56,13 +56,18 @@ h1 {
 /*---HOME PAGE---*/
 .article-list {
   display: grid;
+  grid-template-rows: [row1] 50px;
+  grid-template-columns: [first] 10% [second] 40% [third] 50%;
   background-color: #eeeeee;
   border-radius: 25px;
   padding: 0.5rem;
+  align-items: center;
 }
 
 .single-article {
   margin-top: 1rem;
+  grid-column-start: first;
+  grid-column-end: span end;
   display: grid;
   grid-template-areas: 'topic date'
   'title title'
@@ -75,15 +80,6 @@ h1 {
   margin-left: 2%;
   margin-right: 2%;
   box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
-  min-width: 500px;
-}
-@media(min-width: 1065px){
-  .article-list{
-    justify-content: center
-  }
-  .single-article {
-    min-width: 1000px;
-  }
 }
 .single-article:hover {
   box-shadow: 10px 5px 5px rgba(49, 49, 49, 0.585);
@@ -124,18 +120,45 @@ h1 {
   grid-area: comments;
   padding: 1rem;
   font-size: small;
+  text-align: end;
 }
 
 .topic-select {
+  grid-column-start: second;
   margin-top: 2%;
   margin-left: 2%;
   width: 200px;
 }
+.sort-select {
+  grid-column-start: third;
+  margin-top: 2%;
+  margin-left: 2%;
+  width: 250px;
+}
+@media(min-width: 1065px){
+  .article-list{
+    justify-content: center;
+    grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
+  }
+  .single-article {
+    max-width: 1500px;
+    grid-column-start: second;
+    grid-column-end: span fifth;
+  }
+  .topic-select {
+    grid-column-start: third;
+  }
+  .sort-select {
+    grid-column-start: fourth;
+  }
+}
+
 
 
 /*---Single article page---*/
 .article-background {
   display: grid;
+  grid-template-columns: [first] 10% [second] 40% [third] 50%;
   background-color: #eeeeee;
   border-radius: 25px;
   padding: 0.5rem;
@@ -144,6 +167,8 @@ h1 {
 .article-item {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  grid-column-start: first;
+  grid-column-end: span end;
   display: grid;
   grid-template-areas: 'topic date'
   'title title'
@@ -157,14 +182,16 @@ h1 {
   margin-left: 2%;
   margin-right: 2%;
   box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
-  min-width: 500px;
 }
 @media(min-width: 1065px){
   .article-background{
-    justify-content: center
+    justify-content: center;
+    grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .article-item {
-    max-width: 1000px;
+    max-width: 1500px;
+    grid-column-start: second;
+    grid-column-end: span fifth;
   }
 }
 
@@ -230,6 +257,7 @@ h1 {
 /*---Comment List---*/
 .comment-list {
   display: grid;
+  grid-template-columns: [first] 10% [second] 40% [third] 50%;
   background-color: #eeeeee;
   border-radius: 25px;
   padding: 0.5rem;
@@ -237,6 +265,8 @@ h1 {
 
 .comment-item {
   margin-top: 1rem;
+  grid-column-start: first;
+  grid-column-end: span end;
   margin-bottom: 1rem;
   display: grid;
   grid-template-areas: 'author date'
@@ -253,10 +283,13 @@ h1 {
 
 @media(min-width: 1065px){
   .comment-list{
-    justify-content: center
+    justify-content: center;
+    grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .comment-item {
-    max-width: 1000px;
+    max-width: 1500px;
+    grid-column-start: second;
+    grid-column-end: span fifth;
   }
 }
 
@@ -286,9 +319,74 @@ h1 {
   text-align: end;
 }
 
+.article-break {
+  display: grid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  grid-template-areas: 'blank comment button';
+  grid-template-rows: [row1] 50px;
+  grid-template-columns: [first] 5% [second] 75% [third] 20%;
+}
+.article-break > #comment-title {
+  grid-column-start: second;
+  grid-area: comment;
+  padding: 1rem;
+}
+.article-break > #new-commentButton {
+  grid-area: button;
+  grid-column-start: third;
+  height: 45px;
+  padding: 0.2rem;
+  max-width: 100px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.article-break > #new-commentButton:hover {
+  background-color: rgba(255, 142, 0, 0.8);
+  color: #eeeeee;
+}
+@media(min-width: 850px) {
+  .article-break {
+    grid-template-columns: [first] 5% [second] 80% [third] 15%;
+  }
+}
+@media(min-width: 1065px) {
+  .article-break {
+    grid-template-columns: [first] 7% [second] 75% [third] 15%;
+  }
+}
+@media (min-width: 1200px) {
+  .article-break {
+    grid-template-columns: [first] 20% [second] 55% [third] 15%;
+  }
+}
+
+.new-comment {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.new-comment > #new-commentInput {
+  position: absolute;
+  right: 15%;
+  left: 10%;
+  height: 20px;
+}
+.new-comment > #new-commentSubmit {
+  padding: 0.2rem;
+  position: absolute;
+  right: 5%;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.new-comment > #new-commentSubmit:hover {
+  background-color: rgba(255, 142, 0, 0.8);
+  color: #eeeeee;
+}
+
 /*---Users---*/
 .user-list {
   display: grid;
+  grid-template-columns: [first] 10% [second] 40% [third] 50%;
   background-color: #eeeeee;
   border-radius: 25px;
   padding: 0.5rem;
@@ -297,6 +395,8 @@ h1 {
 .user-item {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  grid-column-start: first;
+  grid-column-end: span end;
   display: inline-grid;
   grid-template-areas: 'img username select';
   grid-template-columns: [first] 200px [line2] 250px;
@@ -332,52 +432,14 @@ h1 {
   color: #eeeeee;
 }
 
-.article-break {
-  display: grid;
-  height: 50px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  grid-template-areas: 'comment button';
-  grid-template-rows: [first] 200px;
+@media(min-width: 1065px){
+  .user-list{
+    justify-content: center;
+    grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
+  }
+  .user-item {
+    max-width: 1500px;
+    grid-column-start: second;
+    grid-column-end: span fifth;
+  }
 }
-.article-break > #comment-title {
-  grid-area: comment;
-  padding: 1rem;
-}
-.article-break > #new-commentButton {
-  grid-area: button;
-  height: 45px;
-  padding: 0.2rem;
-  max-width: 100px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  position: absolute;
-  right: 5%;
-}
-.article-break > #new-commentButton:hover {
-  background-color: rgba(255, 142, 0, 0.8);
-  color: #eeeeee;
-}
-
-.new-comment {
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-.new-comment > #new-commentInput {
-  position: absolute;
-  right: 15%;
-  left: 10%;
-  height: 20px;
-}
-.new-comment > #new-commentSubmit {
-  padding: 0.2rem;
-  position: absolute;
-  right: 5%;
-  border-radius: 5px;
-  background-color: #ffffff;
-}
-.new-comment > #new-commentSubmit:hover {
-  background-color: rgba(255, 142, 0, 0.8);
-  color: #eeeeee;
-}
-

@@ -10,9 +10,12 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [topicList, setTopicList] = useState([{}])
     const [topicSelect, setTopicSelect] = useState('')
+    const [sortList, setSortList] = useState([{}])
+    const [sortSelect, setSortSelect] = useState('')
+    
 
    useEffect(() => {
-    getArticles(topicSelect).then(data => {
+    getArticles(topicSelect, sortSelect).then(data => {
         data.articles.map(article => {
             let str = article.created_at
             let date = moment(str).format("l")
@@ -36,10 +39,11 @@ const Home = () => {
             }
         }))
     })
+    setSortList([{value: 'date', label: 'Date: Oldest to newest'}, {value: 'votes&order=desc', label:'Votes: Higest'}, {value: 'votes&order=asc', label: 'Votes: Lowest'}, {value: 'author&order=asc', label: 'Author: A-Z'}, {value: 'author', label: 'Author: Z-A'}])
    }, [])
 
    //handle which topic has been selected 
-   const handleSelectChange = (selectedOption) => {
+   const handleTopicSelectChange = (selectedOption) => {
     setTopicSelect((currTopic) => {
         if(!selectedOption){
             return currTopic = ''
@@ -47,6 +51,20 @@ const Home = () => {
             return currTopic = selectedOption.value
         }
     })
+   }
+
+   const handleSortSelectChange = (selectedOption) => {
+       setSortSelect((currTopic) => {
+           if(!selectedOption){
+               return currTopic = ''
+           } else {
+               if(selectedOption.value !== 'date') {
+                return currTopic = selectedOption.value 
+               } else if (selectedOption.value === 'date') {
+                return currTopic = 'created_at&order=asc'
+               } 
+           }
+       })
    }
 
    const style = {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
@@ -63,7 +81,16 @@ const Home = () => {
             name='topic'
             placeholder='Topic...'
             options={topicList}
-            onChange={handleSelectChange}
+            onChange={handleTopicSelectChange}
+            />
+            <Select 
+            className="sort-select"
+            isClearable={true}
+            isSearchable={true}
+            name='sort'
+            placeholder='Date: Newest to Oldest'
+            options={sortList}
+            onChange={handleSortSelectChange}
             />
             {articleList.map(article => {
                 return (
