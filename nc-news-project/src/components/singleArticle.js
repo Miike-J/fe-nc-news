@@ -51,14 +51,17 @@ const SingleArticle = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const commentObj = {username: userObj.username, body: newComment}
-        postComment(commentObj, article_id).then(data => {
+        if(newComment.length !== 0) {
+             const commentObj = {username: userObj.username, body: newComment}
+            postComment(commentObj, article_id).then(data => {
             let newCommStr = data.created_at
             let newCommDate = moment(newCommStr).format("l")
             data.created_at = newCommDate
 
             setCommentList(currComm => [...currComm, data])
         })
+        }
+       
         setNewComment('')
     }   
 
@@ -89,7 +92,7 @@ const SingleArticle = () => {
         <button id="new-commentButton" disabled={userObj.username === article.author} onClick={handleNewComment}>New Comment</button>
         </div>
         {newCommentCheck && (
-            <form className="new-comment">
+            <form className="new-comment" onSubmit={handleSubmit}>
                 <input 
                 id="new-commentInput" 
                 autoComplete="off" 
@@ -101,9 +104,9 @@ const SingleArticle = () => {
                 </input>
                 <input 
                 id="new-commentSubmit" 
-                onClick={handleSubmit}
                 type='button' 
                 value='Submit'
+                onClick={handleSubmit}
                 disabled={newComment.length === 0} >
                 </input>
             </form>

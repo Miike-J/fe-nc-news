@@ -7,11 +7,12 @@ import SingleArticle from './components/singleArticle';
 import { Route, Routes } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
 import { useState } from 'react';
+import userImage from './userImage.png'
 
 
 function App() {
 
-  const [userObj, setUserObj] = useState({username: 'tickle122', user_id: 1, img: '/static/media/userImage.63dea67d47c6bad5816f.png'})
+  const [userObj, setUserObj] = useState({username: 'tickle122', user_id: 1, img: userImage})
 
 
   return (

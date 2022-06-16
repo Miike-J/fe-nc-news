@@ -157,6 +157,15 @@ h1 {
   margin-left: 2%;
   margin-right: 2%;
   box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
+  min-width: 500px;
+}
+@media(min-width: 1065px){
+  .article-background{
+    justify-content: center
+  }
+  .article-item {
+    max-width: 1000px;
+  }
 }
 
 .article-item > #article-topic {
@@ -241,6 +250,16 @@ h1 {
   margin-right: 2%;
   box-shadow: 10px 5px 5px rgba(70, 70, 70, 0.315);
 }
+
+@media(min-width: 1065px){
+  .comment-list{
+    justify-content: center
+  }
+  .comment-item {
+    max-width: 1000px;
+  }
+}
+
 .comment-item > #comment-author {
   grid-area: author;
   padding: 1rem;
@@ -339,6 +358,7 @@ h1 {
   background-color: rgba(255, 142, 0, 0.8);
   color: #eeeeee;
 }
+
 .new-comment {
   padding: 1rem;
   margin-bottom: 1rem;
