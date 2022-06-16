@@ -34,3 +34,15 @@ exports.getArticleComments = (article_id) => {
     })
 }
 
+exports.getUsers = () => {
+    return axios.get('https://nc-news-project-app.herokuapp.com/api/users').then(data => {
+        return data.data.users
+    })
+}
+
+exports.postComment = (commentObj, article_id) => {
+    return axios.post(`https://nc-news-project-app.herokuapp.com/api/articles/${article_id}/comments`, commentObj).then(data => {
+        return data.data.comment
+    }).catch(console.dir)
+}
+
