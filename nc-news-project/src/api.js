@@ -49,3 +49,6 @@ exports.postComment = (commentObj, article_id) => {
     }).catch(console.dir)
 }
 
+exports.deleteComment = (comment_id) => {
+    return axios.delete(`https://nc-news-project-app.herokuapp.com/api/comments/${comment_id}`)
+}

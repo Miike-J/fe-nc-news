@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { getSingleArticle, updateVotes, getArticleComments, postComment } from "../api"
+import { getSingleArticle, updateVotes, getArticleComments, postComment, deleteComment } from "../api"
 import moment from "moment"
 import PropgateLoader from 'react-spinners/PropagateLoader'
 import { UserContext } from "../contexts/UserContext"
@@ -15,6 +15,7 @@ const SingleArticle = () => {
     const {userObj} = useContext(UserContext)
     const [newCommentCheck, setNewCommentCheck] = useState(false)
     const [newComment, setNewComment] = useState('')
+    const [deleteError, setDeleteError] = useState([{}])
 
     useEffect(() => {
         getSingleArticle(article_id).then(article => {
@@ -64,6 +65,14 @@ const SingleArticle = () => {
        
         setNewComment('')
     }   
+
+    const handleDeleteClick = (comment_id) => {
+        setDeleteError(commentList)
+        setCommentList(commentList.filter(comment => {
+            return comment.comment_id !== comment_id
+        }))
+        deleteComment(comment_id).catch(() => {setCommentList(deleteError)})
+    }
 
     const style = {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
 
@@ -120,10 +129,17 @@ const SingleArticle = () => {
                         <p id='comment-date'>{comment.created_at}</p>
                         <p id='comment-body'>{comment.body}</p>
                         <p id='comment-votes'>Votes: {comment.votes}</p>
+                        {userObj.username === comment.author && (
+                            <button 
+                            id="delete-button" 
+                            onClick={() => {
+                                handleDeleteClick(comment.comment_id)
+                            }}>Delete</button>
+                        )}
                     </li>
                 )
             }).reverse()}
-        </ul>
+        </ul> 
         </>
     )
 }

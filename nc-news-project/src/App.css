@@ -318,6 +318,17 @@ h1 {
   font-size: small;
   text-align: end;
 }
+.comment-item > #delete-button {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  max-width: 50px;
+  border-radius: 5px;
+  background-color: #ff1c1c;
+  color: #ffffff;
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
 
 .article-break {
   display: grid;
