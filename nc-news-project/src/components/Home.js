@@ -12,6 +12,7 @@ const Home = () => {
     const [topicSelect, setTopicSelect] = useState('')
     const [sortList, setSortList] = useState([{}])
     const [sortSelect, setSortSelect] = useState('')
+    
 
    useEffect(() => {
     getArticles(topicSelect, sortSelect).then(data => {
@@ -88,7 +89,7 @@ const Home = () => {
             isSearchable={true}
             name='sort'
             placeholder='Date: Newest to Oldest'
-            options={sortList}ge
+            options={sortList}
             onChange={handleSortSelectChange}
             />
             {articleList.map(article => {
