@@ -16,6 +16,7 @@ const SingleArticle = () => {
     const [newCommentCheck, setNewCommentCheck] = useState(false)
     const [newComment, setNewComment] = useState('')
     const [deleteError, setDeleteError] = useState([{}])
+    const [articleError, setArticleError] = useState('')
 
     useEffect(() => {
         getSingleArticle(article_id).then(article => {
@@ -24,7 +25,11 @@ const SingleArticle = () => {
             article.date = moment(artDate).format("l")
             setArticle(article)
             setVotes(article.votes)
-        })
+        }).catch(err => {
+            setIsLoading(false)
+            setArticleError(err.message)
+        }
+        )
         getArticleComments(article_id).then(comments => {
             comments.map(comment => {
                 let str = comment.created_at
@@ -77,6 +82,7 @@ const SingleArticle = () => {
     const style = {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
 
    if(isLoading) return <div style={style}><PropgateLoader /></div>
+   if(articleError) return <p className="error-msg">{articleError + '. Press home button to return.'}</p>
     return (
         <>
         <ul className="article-background">

@@ -24,7 +24,7 @@ exports.getTopics = () => {
 exports.getSingleArticle = (article_id) => {
     return axios.get(`https://nc-news-project-app.herokuapp.com/api/articles/${article_id}`).then(data => {
         return data.data.article
-    }).catch(console.dir)
+    })
 }
 
 exports.updateVotes = (article_id, num) => {

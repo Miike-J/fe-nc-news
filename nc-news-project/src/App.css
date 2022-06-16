@@ -454,3 +454,10 @@ h1 {
     grid-column-end: span fifth;
   }
 }
+
+.error-msg {
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #ff1c1c;
+}
