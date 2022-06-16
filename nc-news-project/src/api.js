@@ -1,12 +1,15 @@
 const axios = require('axios')
 
 
-exports.getArticles = (topicSelect) => {
+exports.getArticles = (topicSelect, sortSelect) => {
     //change url for .get if a topic is selected
     let url = 'https://nc-news-project-app.herokuapp.com/api/articles'
-    if(topicSelect) {
+    if(topicSelect && sortSelect.length === 0) {
         url += `?topic=${topicSelect}`
+    } else if (sortSelect && topicSelect.length === 0) {
+        url += `?sort_by=${sortSelect}`
     }
+
     return axios.get(url).then(({data}) => {
         return data
     })
