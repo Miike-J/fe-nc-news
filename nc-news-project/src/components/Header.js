@@ -7,7 +7,7 @@ const Header = () => {
 
     return (
         <div className="Header">
-            <h1>NC - News</h1>
+            <h1><span>NC - News</span></h1>
             <div className="Userbar">
             <p id="Userbar-name">{userObj.username}</p>
             <img id="Userbar-img" src={userObj.img} alt={userObj.username}/>

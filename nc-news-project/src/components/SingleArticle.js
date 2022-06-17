@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { getSingleArticle, updateVotes, getArticleComments, postComment, deleteComment } from "../api"
+import { getSingleArticle, updateVotes, postComment, getArticleComments, deleteComment} from "../api"
 import moment from "moment"
 import PropgateLoader from 'react-spinners/PropagateLoader'
 import { UserContext } from "../contexts/UserContext"
+
 
 const SingleArticle = () => {
     const [article, setArticle] = useState({})
@@ -15,8 +16,8 @@ const SingleArticle = () => {
     const {userObj} = useContext(UserContext)
     const [newCommentCheck, setNewCommentCheck] = useState(false)
     const [newComment, setNewComment] = useState('')
-    const [deleteError, setDeleteError] = useState([{}])
     const [articleError, setArticleError] = useState('')
+    const [deleteError, setDeleteError] = useState([{}])
 
     useEffect(() => {
         getSingleArticle(article_id).then(article => {
@@ -37,8 +38,8 @@ const SingleArticle = () => {
                 return comment.created_at = date
         })
             setCommentList(comments)
-            setIsLoading(false)
         })
+        setIsLoading(false)
     }, [])
 
     const handleUpVote = () => {
@@ -57,8 +58,10 @@ const SingleArticle = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        const commentCheck = document.getElementById('new-commentInput')
         if(newComment.length !== 0) {
-             const commentObj = {username: userObj.username, body: newComment}
+            commentCheck.placeholder = "Type..."
+            const commentObj = {username: userObj.username, body: newComment}
             postComment(commentObj, article_id).then(data => {
             let newCommStr = data.created_at
             let newCommDate = moment(newCommStr).format("l")
@@ -66,6 +69,8 @@ const SingleArticle = () => {
 
             setCommentList(currComm => [...currComm, data])
         })
+        } else {
+            commentCheck.placeholder = "Can't leave blank..."
         }
        
         setNewComment('')
@@ -126,7 +131,6 @@ const SingleArticle = () => {
                 </input>
             </form>
         )}
-
         <ul className="comment-list">
             {commentList.map(comment => {
                 return (

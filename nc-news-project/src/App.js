@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Nav from './components/Nav'
 import Home from './components/Home';
 import UserList from './components/UserList';
-import SingleArticle from './components/singleArticle';
+import SingleArticle from './components/SingleArticle';
 import NoPath from './components/NoPath';
 import { Route, Routes } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';

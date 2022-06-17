@@ -461,3 +461,6 @@ h1 {
   font-weight: bold;
   color: #ff1c1c;
 }
+.red-border {
+  background-color: rgba(230, 15, 15, 0.3);
+}
