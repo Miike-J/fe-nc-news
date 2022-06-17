@@ -131,6 +131,7 @@ const SingleArticle = () => {
                 </input>
             </form>
         )}
+        
         <ul className="comment-list">
             {commentList.map(comment => {
                 return (
