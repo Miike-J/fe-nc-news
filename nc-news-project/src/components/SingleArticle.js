@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { getSingleArticle, updateVotes, getArticleComments, postComment, deleteComment } from "../api"
+import { getSingleArticle, updateVotes, postComment, getArticleComments, deleteComment} from "../api"
 import moment from "moment"
 import PropgateLoader from 'react-spinners/PropagateLoader'
 import { UserContext } from "../contexts/UserContext"
+
 
 const SingleArticle = () => {
     const [article, setArticle] = useState({})
@@ -15,6 +16,7 @@ const SingleArticle = () => {
     const {userObj} = useContext(UserContext)
     const [newCommentCheck, setNewCommentCheck] = useState(false)
     const [newComment, setNewComment] = useState('')
+    const [articleError, setArticleError] = useState('')
     const [deleteError, setDeleteError] = useState([{}])
 
     useEffect(() => {
@@ -24,7 +26,11 @@ const SingleArticle = () => {
             article.date = moment(artDate).format("l")
             setArticle(article)
             setVotes(article.votes)
-        })
+        }).catch(err => {
+            setIsLoading(false)
+            setArticleError(err.message)
+        }
+        )
         getArticleComments(article_id).then(comments => {
             comments.map(comment => {
                 let str = comment.created_at
@@ -32,8 +38,8 @@ const SingleArticle = () => {
                 return comment.created_at = date
         })
             setCommentList(comments)
-            setIsLoading(false)
         })
+        setIsLoading(false)
     }, [])
 
     const handleUpVote = () => {
@@ -52,8 +58,10 @@ const SingleArticle = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        const commentCheck = document.getElementById('new-commentInput')
         if(newComment.length !== 0) {
-             const commentObj = {username: userObj.username, body: newComment}
+            commentCheck.placeholder = "Type..."
+            const commentObj = {username: userObj.username, body: newComment}
             postComment(commentObj, article_id).then(data => {
             let newCommStr = data.created_at
             let newCommDate = moment(newCommStr).format("l")
@@ -61,6 +69,8 @@ const SingleArticle = () => {
 
             setCommentList(currComm => [...currComm, data])
         })
+        } else {
+            commentCheck.placeholder = "Can't leave blank..."
         }
        
         setNewComment('')
@@ -77,6 +87,7 @@ const SingleArticle = () => {
     const style = {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
 
    if(isLoading) return <div style={style}><PropgateLoader /></div>
+   if(articleError) return <p className="error-msg">{articleError + '. Press home button to return.'}</p>
     return (
         <>
         <ul className="article-background">
@@ -120,7 +131,6 @@ const SingleArticle = () => {
                 </input>
             </form>
         )}
-
         <ul className="comment-list">
             {commentList.map(comment => {
                 return (

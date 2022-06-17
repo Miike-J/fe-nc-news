@@ -3,7 +3,8 @@ import Header from './components/Header';
 import Nav from './components/Nav'
 import Home from './components/Home';
 import UserList from './components/UserList';
-import SingleArticle from './components/singleArticle';
+import SingleArticle from './components/SingleArticle';
+import NoPath from './components/NoPath';
 import { Route, Routes } from 'react-router-dom';
 import { UserContext } from './contexts/UserContext';
 import { useState } from 'react';
@@ -24,6 +25,7 @@ function App() {
       <Route path='/' element={<Home />}></Route>
       <Route path='/article/:article_id' element={<SingleArticle />}></Route>
       <Route path='/users' element={<UserList />}></Route>
+      <Route path ='/*' element={<NoPath/>}></Route>
     </Routes>
     </UserContext.Provider>
     </>
