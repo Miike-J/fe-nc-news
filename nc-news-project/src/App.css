@@ -386,7 +386,7 @@ h1 {
 }
 @media(min-width: 1065px) {
   .article-break {
-    grid-template-columns: [first] 7% [second] 75% [third] 15%;
+    grid-template-columns: [first] 13% [second] 69% [third] 15%;
   }
 }
 @media (min-width: 1200px) {
@@ -404,6 +404,17 @@ h1 {
   right: 15%;
   left: 10%;
   height: 20px;
+  width: 200px;
+}
+@media (min-width: 460px){
+  .new-comment > #new-commentInput {
+    width: 330px;
+  }
+}
+@media (min-width: 800px){
+  .new-comment > #new-commentInput {
+    width: 500px;
+  }
 }
 .new-comment > #new-commentSubmit {
   padding: 0.2rem;
@@ -411,6 +422,15 @@ h1 {
   right: 5%;
   border-radius: 5px;
   background-color: #ffffff;
+}
+@media (min-width: 1065px){
+  .new-comment > #new-commentInput {
+    width: 600px;
+    left: 15%;
+  }
+  .new-comment > #new-commentSubmit {
+    right: 11%;
+  }
 }
 .new-comment > #new-commentSubmit:hover {
   background-color: rgba(255, 142, 0, 0.8);
