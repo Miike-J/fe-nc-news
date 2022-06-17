@@ -10,9 +10,9 @@ span {
 .Header {
   display: grid;
   grid-template-areas: 'userbar h1';
-  grid-template-columns: [first] 250px;
+  grid-template-columns: [first] 200px;
   align-items: center;
-  align-content: stretch;
+  align-content: center;
 }
 
 h1 {
@@ -57,11 +57,26 @@ h1 {
 .article-list {
   display: grid;
   grid-template-rows: [row1] 50px;
-  grid-template-columns: [first] 10% [second] 40% [third] 50%;
+  grid-template-columns: [first] 2% [second] 40% [third] 50%;
   background-color: #eeeeee;
   border-radius: 25px;
   padding: 0.5rem;
   align-items: center;
+}
+@media(min-width: 490px) {
+  .article-list {
+    grid-template-columns: [first] 10% [second] 40% [third] 50%;
+  }
+}
+@media(min-width: 550px) {
+  .article-list {
+    grid-template-columns: [first] 5% [second] 50% [third] 40%;
+  }
+}
+@media(min-width: 720px) {
+  .article-list {
+    grid-template-columns: [first] 5% [second] 60% [third] 30%;
+  }
 }
 
 .single-article {
@@ -126,14 +141,20 @@ h1 {
 .topic-select {
   grid-column-start: second;
   margin-top: 2%;
-  margin-left: 2%;
-  width: 200px;
+  width: 110px;
 }
 .sort-select {
   grid-column-start: third;
   margin-top: 2%;
-  margin-left: 2%;
-  width: 250px;
+  width: 200px;
+}
+@media (min-width: 440px) {
+  .topic-select {
+    width: 150px
+  }
+  .sort-select {
+    width: 230px;
+  }
 }
 @media(min-width: 1065px){
   .article-list{
@@ -141,7 +162,6 @@ h1 {
     grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .single-article {
-    max-width: 1500px;
     grid-column-start: second;
     grid-column-end: span fifth;
   }
@@ -189,7 +209,6 @@ h1 {
     grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .article-item {
-    max-width: 1500px;
     grid-column-start: second;
     grid-column-end: span fifth;
   }
@@ -287,7 +306,6 @@ h1 {
     grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .comment-item {
-    max-width: 1500px;
     grid-column-start: second;
     grid-column-end: span fifth;
   }
@@ -410,7 +428,6 @@ h1 {
   grid-column-end: span end;
   display: inline-grid;
   grid-template-areas: 'img username select';
-  grid-template-columns: [first] 200px [line2] 250px;
   background-color: #ffffff;
   border: solid 2px #ffffff;
   list-style: none;
@@ -449,7 +466,6 @@ h1 {
     grid-template-columns: [first] 10% [second] 17% [third] 33% [fourth] 30% [fifth] 10%;
   }
   .user-item {
-    max-width: 1500px;
     grid-column-start: second;
     grid-column-end: span fifth;
   }
