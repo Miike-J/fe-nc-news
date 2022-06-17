@@ -354,7 +354,7 @@ h1 {
   margin-bottom: 10px;
   grid-template-areas: 'blank comment button';
   grid-template-rows: [row1] 50px;
-  grid-template-columns: [first] 5% [second] 75% [third] 20%;
+  grid-template-columns: [first] 5% [second] 65% [third] 35%;
 }
 .article-break > #comment-title {
   grid-column-start: second;
@@ -366,13 +366,18 @@ h1 {
   grid-column-start: third;
   height: 45px;
   padding: 0.2rem;
-  max-width: 100px;
+  max-width: 80px;
   border-radius: 5px;
   background-color: #ffffff;
 }
 .article-break > #new-commentButton:hover {
   background-color: rgba(255, 142, 0, 0.8);
   color: #eeeeee;
+}
+@media(min-width: 560px) {
+  .article-break {
+    grid-template-columns: [first] 5% [second] 75% [third] 25%;
+  }
 }
 @media(min-width: 850px) {
   .article-break {
@@ -428,6 +433,7 @@ h1 {
   grid-column-end: span end;
   display: inline-grid;
   grid-template-areas: 'img username select';
+  grid-template-columns: [first] 35% [second] 35% [third] 30%;
   background-color: #ffffff;
   border: solid 2px #ffffff;
   list-style: none;
@@ -445,19 +451,25 @@ h1 {
 }
 .user-item > #user-name {
   grid-area: username;
+  padding: 0.5rem;
 }
 .user-item > #user-select {
   grid-area: select;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 5%;
   padding: 0.2rem;
-  max-width: 100px;
+  max-width: 80px;
   border-radius: 5px;
   background-color: #ffffff;
 }
 .user-item> #user-select:hover {
   background-color: rgba(255, 142, 0, 0.8);
   color: #eeeeee;
+}
+
+@media (min-width: 550px) {
+  .user-item {
+    grid-template-columns: [first] 25% [second] 45% [third] 30%;
+  }
 }
 
 @media(min-width: 1065px){
